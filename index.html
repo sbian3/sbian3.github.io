@@ -1,447 +1,667 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML lang="en"><HEAD>
-    <TITLE>
-      SB Home Page
-    </TITLE>
-</HEAD>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SB Home Page</title>
+    <style>
+        :root {
+            --text-main: #222;
+            --text-muted: #666;
+            --accent: #000;
+            --bg: #ffffff;
+            --border: #eeeeee;
+        }
 
-<STYLE>BODY {
+        body {
+            margin: 0;
+            padding: 60px 0;
+            background-color: var(--bg);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
 
-PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 0px; MARGIN: 20px; FONT: 12px
-  verdana, arial, helvetica, sans-serif; PADDING-TOP: 0px; BACKGROUND-COLOR: #ffffff
+        .container {
+            width: 850px;
+            margin: 0 auto;
+        }
 
+        .grid {
+            display: flex;
+            gap: 60px;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 220px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 0 0 20px 0;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 40px 0 20px 0;
+            color: var(--text-muted);
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        a {
+            color: var(--text-main);
+            text-decoration: underline;
+            text-decoration-color: #ccc;
+            text-underline-offset: 3px;
+        }
+
+        /* The Cropped Image Logic */
+        .profile-img {
+            width: 200px; /* Set a fixed width */
+            height: 200px; /* Set a fixed height to create a square crop */
+            object-fit: cover; /* This "crops" the image to fill the square without stretching */
+            border-radius: 20px; /* This creates the rounded "window" effect */
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+        }
+
+        .scholar-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            background-color: #f8f9fa;
+            color: var(--text-main);
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .contact-info {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .contact-header {
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+/* Publication Container */
+.pub-list {
+    margin-top: 25px;
 }
-</STYLE>
-<BODY>
-  <TABLE id=NUMBER1 style="BORDER-COLLAPSE: collapse" borderColor=#111111
 
-                    height=103 cellSpacing=0 cellPadding=5 width="100%" border=0>
+.pub-item {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
 
-    <TBODY>
+.pub-item:last-child {
+    border-bottom: none;
+}
 
-      <TR>
+/* Line 1: Title and Links */
+.pub-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 6px;
+}
 
-        <!-- Start Self Intro -->
-        <TD vAlign=top width="47%" height=103 rowSpan=2>
-		<H1> <A href="https://scholar.google.com/citations?user=MT45-PwAAAAJ"> BIAN, Song </A> </H1>
+.pub-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.3;
+    flex: 1;
+}
 
-          <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">I am a tenure-track associate professor at the
-                   <A
-                   href="https://cst.buaa.edu.cn/">
-                   School of Cyber Science and Technology</A> of <A
-                   href="https://ev.buaa.edu.cn/"> Beihang University</A>.
-          
-                 My current research interests include applied cryptography, domain-specific accelerators, and AI security.  </FONT></P>
+.pub-links {
+    display: flex;
+    gap: 8px;
+    white-space: nowrap;
+}
 
-          <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">
-          I was an assistant professor 
-            at <A href="http://www.kyoto-u.ac.jp/en">Kyoto University</A> from 2019 to 2021.
-            I received Ph.D.
-            and M.Sc in Informatics from Kyoto University in 2019, 2017, respectively.
-            I graduated from the <a
-                   href="http://www.wisc.edu/">University of Wisconsin-Madison</a> with
-                 a B.Sc in Computer Engineering in 2014.
-          <HR>
+.pub-link {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    color: #444;
+    border: 1px solid #ddd;
+    transition: all 0.2s ease;
+}
 
+.pub-link:hover {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+/* Line 2: Authors */
+.pub-authors {
+    display: block;
+    font-size: 14.5px;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+/* Line 3: Venue, Year, Place */
+.pub-meta {
+    display: block;
+    font-size: 14.5px;
+    color: #555;
+    font-style: italic;
+}
+
+.pub-meta strong {
+    font-style: normal;
+    color: #666;
+}
+        hr {
+            border: 0;
+            border-top: 1px solid var(--border);
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="grid">
+        <div class="main-content">
+            <h1>BIAN, Song             
+            <a href="https://scholar.google.com" target="_blank" title="Visit Google Scholar" style="margin-left: 10px;">
+    <img src="./fig/gc.png" 
+         alt="Google Scholar Icon" 
+         width="21" 
+         height="21" 
+         style="vertical-align: middle;">
+</a>
+            </h1>             
+
+            
+            <p>I am a tenure-track associate professor at the <a href="https://cst.buaa.edu.cn/">School of Cyber Science and Technology</a> of <a href="https://ev.buaa.edu.cn/">Beihang University</a>. My current research interests include applied cryptography, domain-specific accelerators, and AI security.</p>
+
+            <p>I was an assistant professor at <a href="http://www.kyoto-u.ac.jp/en">Kyoto University</a> from 2019 to 2021. I received Ph.D. and M.Sc in Informatics from Kyoto University in 2019 and 2017, respectively. I graduated from the <a href="http://www.wisc.edu/">University of Wisconsin-Madison</a> with a B.Sc in Computer Engineering in 2014.</p>
+
+            <hr>
           <!-- Start Publication -->
-          <H1 name="container"><SPAN	style="FONT-SIZE: 18px">Selected Publications</span></H1><p>
+      <h2 class="section-title">Selected Publications</h2>
+        <div class="pub-list">
           
   <table>
 
   <table>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">1.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Yintai Sun, Zian Zhao, Haowen Pan, Mingzhe Zhang, Zhenyu Guan, Libra: Pattern-Scheduling Co-Optimization for Cross-Scheme FHE Code Generation over GPGPU, <em>USENIX Security Symposium</em>, August 2026 (to appear).</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">2. <a href="https://eprint.iacr.org/2026/367">[PDF]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Yunhao Fu, Ruiyu Shen, Haowen Pan, Anyu Wang, Zhenyu Guan, High-Precision Functional Bootstrapping for CKKS from Fourier Extension, <em>EUROCRYPT</em>, May 2026 (to appear).</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">3. <a href="https://arxiv.org/abs/2509.03123">[PDF]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Wei Xu, Hui Zhu, Yandong Zheng, <u>Song Bian</u>, Ning Sun, Hao Yuan, Dengguo Feng, Hui Li, Kangaroo: A Private and Amortized Inference Framework over WAN for Large-Scale Decision Tree Evaluation, <em>Network and Distributed System Security Symposium (NDSS)</em>, February 2026.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">4.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Qingwen Li, <u>Song Bian</u>, Hui Li, cwPSU: Efficient Unbalanced Private Set Union via Constant-weight Codes, <em>Network and Distributed System Security Symposium (NDSS)</em>, February 2026.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">5.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Yintai Sun, Shengyu Fan, Zhenhua Yin, Xinkai Song, Xing Hu, Zidong Du, Qi Guo, Weizhi Xu, Rui Hou, Dan Meng, <u>Song Bian</u>, Mingzhe Zhang, TensorFHE+: Fully Homomorphic Encryption Acceleration based on Linear Algebra, <em> IEEE Transactions on Computers</em>, November 2025.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">6. <a href="https://eprint.iacr.org/2025/198">[PDF]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Haowen Pan, Jiaqi Hu, Zhou Zhang, Yunhao Fu, Jiafeng Hua, Yi Chen, Bo Zhang, Yier Jin, Jin Dong, and Zhenyu Guan,  Engorgio: An Arbitrary-Precision Unbounded-Size Hybrid Encrypted Database via Quantized Fully Homomorphic Encryption, <em>USENIX Security Symposium</em>, August 2025.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">7.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Luchang Lei, Yu Duan, Cheng Peng, Yongqing Zhu, Gangfeng Du, Zhenyu Guan, Huazhong Yang, Yongpan Liu, Zhen Gu, <u>Song Bian</u>, Hongyang Jia, Presto: A Unified RISC-V-Compatible SoC for Multi-Scheme FHE Acceleration over Module Lattice, <em>IEEE Hot Chips 37 Symposium (HCS)</em>, August 2025.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">8.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Luchang Lei, Yongqing Zhu, Xinhang Zou, Zhou Zhang, Zian Zhao, Yifan He, Gangfeng Du, Zhenyu Guan, Huazhong Yang, Yongpan Liu, <u>Song Bian</u>, Hongyang Jia, Enabling Energy-Efficient Homomorphic Encryption Evaluation via eDRAM-Based In-Situ Computing in an Edge Processor, <em> IEEE Journal of Solid-State Circuits (JSSC)</em>, July 2025.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">9. <a href="https://eprint.iacr.org/2024/1991">[PDF]</a><br/><a href="https://github.com/heir-compiler/CHLOE">[Code]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Zian Zhao, Ruiyu Shen, Zhou Zhang, Ran Mao, Dawei Li, Yizhong Liu, Masaki Waga, Kohei Suenaga, Zhenyu Guan, Jiafeng Hua, Yier Jin, and Jianwei Liu, CHLOE: Loop Transformation over Fully Homomorphic Encryption via Multi-Level Vectorization and Control-Path Reduction, <em>IEEE Symposium on Security and Privacy (S&P)</em>, May 2025.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">10. <a href="https://eprint.iacr.org/2025/625">[PDF]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Yunhao Fu, Dong Zhao, Haowen Pan, Yuexiang Jin, Jiayue Sun, Hui Qiao, Zhenyu Guan, FHECAP: An Encrypted Control System With Piecewise Continuous Actuation, <em>IEEE Transactions on Information Forensics and Security (TIFS)</em>, April 2025.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">11. <a href="https://eprint.iacr.org/2024/1064">[PDF]</a><br/><a href="https://github.com/zhouzhangwalker/ArcEDB">[Code]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Zhou Zhang, <u>Song Bian</u>, Zian Zhao, Ran Mao, Haoyi Zhou, Jiafeng Hua, Yier Jin, and Zhenyu Guan, ArcEDB: An Arbitrary-Precision Encrypted Database via (Amortized) Modular Homomorphic Encryption, <em>ACM Conference on Computer and Communications Security (CCS)</em>, October 2024.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">12.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Luchang Lei, Yongqing Zhu, Xinhang Zou, Yifan He, Zhou Zhang, Zhenyu Guan, Huazhong Yang, Yongpan Liu, <u>Song Bian</u>, and Hongyang Jia, An eDRAM-Based In-Situ-Computing Processor for Homomorphic Encryption Evaluation on the Edge, <em>European Solid-State Electronics Research Conference (ESSERC)</em>, September 2024.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">13.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Yuntao Wei, Xueyan Wang, <u>Song Bian</u>, Yicheng Huang, Weisheng Zhao, and Yier Jin, PPGNN: Fast and Accurate Privacy-Preserving Graph Neural Network Inference via Parallel and Pipelined Arithmetic-and-Logic FHE Accelerator, <em>ACM/IEEE Design Automation Conference (DAC)</em>, July 2024.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">14.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Jianan Mu, Husheng Han, Shangyi Shi, Jing Ye, Zizhen Liu, Shengwen Liang, Meng Li, Mingzhe Zhang, <u>Song Bian</u>, Xing Hu, Huawei Li, Xiaowei Li, Alchemist: A Unified Accelerator Architecture for Cross-Scheme Fully Homomorphic Encryption, <em>ACM/IEEE Design Automation Conference (DAC)</em>, July 2024.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">15.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Zhenyu Guan, Yongqing Zhu, Yicheng Huang, Luchang Lei, Xueyan Wang, Hongyang Jia, Yi Chen, Bo Zhang, Jin Dong, <u>Song Bian</u>, ESC-NTT: An Elastic, Seamless and Compact Architecture for Multi-Parameter NTT Acceleration, <em>Proc. of Design, Automation & Test in Europe (DATE)</em>, March 2024.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">16. <a href="https://eprint.iacr.org/2023/1445">[PDF]</a><br/><a href="https://github.com/heir-compiler/HEIR">[Code]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Zian Zhao, Zhou Zhang, Ran Mao, Kohei Suenaga, Yier Jin, Zhenyu Guan, and Jianwei Liu, HEIR: A Unified Representation for Cross-Scheme Compilation of Fully Homomorphic Computation, <em>Network and Distributed System Security Symposium (NDSS)</em>, February 2024.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">17. <a href="https://eprint.iacr.org/2024/1250">[PDF]</a><br/><a href="https://github.com/Lavendes/AutoHog">[Code]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Zhenyu Guan, Ran Mao, Qianyun Zhang, Zhou Zhang, Zian Zhao, and <u>Song Bian</u>, AutoHoG: Automating Homomorphic Gate Design for Large-Scale Logic Circuit Evaluation, <em>IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems</em>, January 2024.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">18. <a href="https://eprint.iacr.org/2023/1446">[PDF]</a><br/><a href="https://github.com/zhouzhangwalker/HE3DB/">[Code]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Zhou Zhang, Haowen Pan, Ran Mao, Zian Zhao, Yier Jin, and Zhenyu Guan, HE<sup>3</sup>DB: An Efficient and Elastic Encrypted Database Via Arithmetic-And-Logic Fully Homomorphic Encryption, <em>ACM Conference on Computer and Communications Security (CCS)</em>, November 2023 (<FONT color="#FF0000">Distinguished Paper Award!</FONT>).</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">19.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Yuntao Wei, Xueyan Wang, <u>Song Bian</u>, Weisheng Zhao, and Yier Jin, THE-V: Verifiable Privacy-Preserving Neural Network via Trusted Homomorphic Execution, <em>IEEE/ACM International Conference on Computer-Aided Design (ICCAD)</em>, October 2023.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">20. <a href="https://vldb.org/pvldb/volumes/16/paper/HEDA%3A%20Multi-Attribute%20Unbounded%20Aggregation%20over%20Homomorphically%20Encrypted%20Database">[PDF]</a><br/><a href="https://github.com/alibaba-edu/mpc4j/tree/main/mpc4j-native-fhe/tfhe">[Code]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Xuanle Ren, Le Su, Zhen Gu, Sheng Wang, Feifei Li, Yuan Xie, <u>Song Bian</u>, Chao Li, and Fan Zhang, HEDA: Multi-Attribute Unbounded Aggregation over Homomorphically Encrypted Database, <em>International Conference on Very Large Data Bases (VLDB)</em>, September 2023.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">21.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Lin Ding, <u>Song Bian</u>, and Jiliang Zhang, PIMA-LPN: Processing-in-memory Acceleration for Efficient LPN-based Post-Quantum Cryptography, <em>ACM/IEEE Design Automation Conference (DAC)</em>, July 2023.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">22. <a href="https://arxiv.org/abs/2206.03582">[PDF]</a><br/><a href="https://doi.org/10.5281/zenodo.6558657">[Code]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Ryotaro Banno, Kotaro Matsuoka, Naoki Matsumoto, <u>Song Bian</u>, Masaki Waga, and Kohei Suenaga, Oblivious Online Monitoring for Safety LTL Specification via Fully Homomorphic Encryption, <em>Computer Aided Verification (CAV)</em>, August 2022.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">23.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Tianchen Wang, Jiawei Zhang, Jinjun Xiong, <u>Song Bian</u>, Zheyu Yan, Meiping Huang, Jian Zhuang, Takashi Sato, Yiyu Shi, and Xiaowei Xu, VisualNet: An End-to-End Human Visual System Inspired Framework to Reduce Inference Latency of Deep Neural Networks, <em>IEEE Transactions on Computers</em>, July 2022.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">24.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Shumpei Morita, <u>Song Bian</u>, Michihiro Shintani, and Takashi Sato, Efficient Analysis for Mitigation of Workload-dependent Aging Degradation, <em>IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems</em>, February 2022.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">25.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Dur E Shahwar Kundi, Ayesha Khalid, <u>Song Bian</u>, Chenghua Wang, Maire O'Neill, and Weiqiang Liu, AxRLWE: A Multi-level Approximate Ring-LWE Co-processor for Lightweight IoT Applications, <em>IEEE Internet of Things Journal</em>, October 2021.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">26. <a href="https://eprint.iacr.org/2021/1284">[PDF]</a><br/><a href="https://github.com/sbian3/homomorphicmatrix">[Code]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Dur E Shahwar Kundi, Kazuma Hirozawa, Weiqiang Liu, and Takashi Sato, APAS: Application-specific accelerators for RLWE-based homomorphic linear transformations, <em>IEEE Transactions on Information Forensics and Security</em>, September 2021.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">27. <a href="https://arxiv.org/abs/2010.09410">[PDF]</a><br/><a href="https://github.com/virtualsecureplatform/kvsp">[Code]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Kotaro Matsuoka, Ryotaro Banno, Naoki Matsumoto, Takashi Sato, and <u>Song Bian</u>, Virtual Secure Platform: A Five-Stage Pipeline Processor over TFHE, <em>USENIX Security Symposium</em>, August 2021.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">28.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Weiwen Jiang, and Takashi Sato, Privacy-Preserving Medical Image Segmentation via Hybrid Trusted Execution Environment, <em>ACM/IEEE Design Automation Conference (DAC)</em>, July 2021.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">29. <a href="https://eprint.iacr.org/2021/341">[PDF]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Takashi Sato, Yuki Tanaka, <u>Song Bian</u>, Clonable PUF: on the Design of PUFs That Share Equivalent Responses, <em>Proc. of IEEE International Symposium on Circuits and Systems (ISCAS)</em>, May 2021.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">30. <a href="https://eprint.iacr.org/2021/198">[PDF]</a><br/><a href="https://github.com/tono-satolab/atpqc-cuda">[Code]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Tatsuki Ono, <u>Song Bian</u>, Takashi Sato, Automatic Parallelism Tuning for Module Learning with Errors Based Post-Quantum Key Exchanges on GPUs, <em>Proc. of IEEE International Symposium on Circuits and Systems (ISCAS)</em>, May 2021.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">31. <a href="https://arxiv.org/abs/2006.04219">[PDF]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Qian Lou, <u>Song Bian</u>, and Lei Jiang, AutoPrivacy: Automated Layer-wise Parameter Selection for Secure Neural Network Inference, <em>Conference on Neural Information Processing (NeurIPS)</em>, December 2020.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">32. <a href="https://arxiv.org/pdf/2007.06855">[PDF]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Xiaowei Xu, Weiwen Jiang, Yiyu Shi, and Takashi Sato, BUNET: Blind Medical Image Segmentation Based on Secure UNET, <em>International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI)</em>, October 2020.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">33. <a href="https://arxiv.org/pdf/2001.11854">[PDF]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Weiwen Jiang, Qing Lu, Yiyu Shi, and Takashi Sato, NASS: Optimizing Secure Inference via Neural Architecture Search, <em>European Conference on Artificial Intelligence (ECAI)</em>, June 2020.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">34. <a href="https://arxiv.org/pdf/2003.05328">[PDF]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Tianchen Wang, Masayuki Hiromoto, Yiyu Shi, and Takashi Sato, ENSEI: Efficient Secure Inference via Frequency-Domain Homomorphic Convolution for Privacy-Preserving Visual Recognition, <em>Proc. IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, June 2020.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">35.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Dur E Shahwar Kundi, <u>Song Bian</u>, Ayesha Khalid, Chenghua Wang, Maire O'Neill, and Weiqiang Liu, AxMM: Area and Power Efficient Approximate Modulo Multiplier for R-LWE Cryptosystem, <em>Proc. of IEEE International Symposium on Circuits and Systems (ISCAS)</em>, May 2020.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">36. <a href="./file/Bian2019filianore.pdf">[PDF]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Masayuki Hiromoto, Takashi Sato, Filianore: Better Multiplier Architectures for LWE-based Post-Quantum Key Exchange, <em>Proc. of ACM/IEEE Design Automation Conference (DAC)</em>, June 2019.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">37. <a href="./file/Bian2019darl.pdf">[PDF]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Masayuki Hiromoto, Takashi Sato, DArL: Dynamic Parameter Adjustment for LWE-based Secure Inference, <em>Proc. of Design, Automation & Test in Europe (DATE)</em>, March 2019.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">38. <a href="./file/Bian2019snbf.pdf">[PDF]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Masayuki Hiromoto, Takashi Sato, Towards Practical Homomorphic Email Filtering: A Hardware-Accelerated Secure Naive Bayesian Filter, <em>Proc. of Asia and South Pacific Design Automation Conference (ASP-DAC)</em>, January 2019.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">39. <a href="./file/Bian2018dwe.pdf">[PDF]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Masayuki Hiromoto, Takashi Sato, DWE: Decrypting Learning with Errors with Errors, <em>Proc. of ACM/IEEE Design Automation Conference (DAC)</em>, June 2018.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">40.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">Yuki Tanaka, <u>Song Bian</u>, Masayuki Hiromoto, Takashi Sato, Coin Flipping PUF: A Novel PUF with Improved Resistance against Machine Learning Attacks, <em>IEEE Transactions Circuits and Systems II: Express Briefs</em>, May 2018.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">41. <a href="./file/Bian2017lsta.pdf">[PDF]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Michihiro Shintani, Masayuki Hiromoto, Takashi Sato, LSTA: Learning-Based Static Timing Analysis for High-Dimensional Correlated On-Chip Variations, <em>Proc. of ACM/IEEE Design Automation Conference (DAC)</em>, June 2017.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">42. <a href="./file/Bian2017scam.pdf">[PDF]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Masayuki Hiromoto, Takashi Sato, SCAM: Secured Content Addressable Memory Based on Homomorphic Encryption, <em>Proc. of Design, Automation & Test in Europe (DATE)</em>, March 2017.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">43.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Michihiro Shintani, Zheng Wang, Masayuki Hiromoto, Anupam Chattopadhyay, Takashi Sato, Runtime NBTI Mitigation for Processor Lifespan Extension via Selective Node Control, <em>Proc. of IEEE Asian Test Symposium (ATS)</em>, November 2016.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">44. <a href="./file/Bian2016workload-aware.pdf">[PDF]</a></FONT> 
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Michihiro Shintani, Shumpei Morita, Hiromitsu Awano, Masayuki Hiromoto, Takashi Sato, Workload-Aware Worst Path Analysis of Processor-Scale NBTI Degradation, <em>Proc. of Great Lakes Symposium on VLSI (GLSVLSI)</em>, May 2016.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">45.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Michihiro Shintani, Shumpei Morita, Masayuki Hiromoto, Takashi Sato, Nonlinear Delay-Table Approach for Full-Chip NBTI Degradation Prediction, <em>Proc. of International Symposium on Quality Electronic Design (ISQED)</em>, March 2016.</FONT></P>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td align="right" width=65 class="bibtexnumber">
-      <FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt">46.  
-      </td>
-      <td class="bibtexitem">
-        <P><FONT style="FONT-WEIGHT: 400; FONT-SIZE: 10pt"><u>Song Bian</u>, Michihiro Shintani, Zheng Wang, Masayuki Hiromoto, Anupam Chattopadhyay, Takashi Sato, Mitigation of NBTI-induced Timing Degradation in Processor, <em>Proc. of ACM International Workshop on Timing Issues in the Specification and Synthesis of Digital Systems (TAU)</em>, March 2016.</FONT></P>
-      </td>
-    </tr>
-  </table>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Libra: Pattern-Scheduling Co-Optimization for Cross-Scheme FHE Code Generation over GPGPU</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Yintai Sun, Zian Zhao, Haowen Pan, Mingzhe Zhang, Zhenyu Guan        </span>
+        <span class="pub-meta"><strong>USENIX Security Symposium</strong>, August 2026 (to appear)</span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">High-Precision Functional Bootstrapping for CKKS from Fourier Extension</span>
+        <div class="pub-links">      <a href="https://eprint.iacr.org/2026/367" class="pub-link">PDF </a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Yunhao Fu, Ruiyu Shen, Haowen Pan, Anyu Wang, Zhenyu Guan        </span>
+        <span class="pub-meta"><strong>EUROCRYPT</strong>, May 2026 (to appear)</span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Kangaroo: A Private and Amortized Inference Framework over WAN for Large-Scale Decision Tree Evaluation</span>
+        <div class="pub-links">      <a href="https://arxiv.org/abs/2509.03123" class="pub-link">PDF </a> 
+        </div>
+    </div>
+        <span class="pub-authors">Wei Xu, Hui Zhu, Yandong Zheng, <strong>Song Bian</strong>, Ning Sun, Hao Yuan, Dengguo Feng, Hui Li        </span>
+        <span class="pub-meta"><strong>Network and Distributed System Security Symposium (NDSS)</strong>, February 2026 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">cwPSU: Efficient Unbalanced Private Set Union via Constant-weight Codes</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors">Qingwen Li, <strong>Song Bian</strong>, Hui Li        </span>
+        <span class="pub-meta"><strong>Network and Distributed System Security Symposium (NDSS)</strong>, February 2026 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">TensorFHE+: Fully Homomorphic Encryption Acceleration based on Linear Algebra</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors">Yintai Sun, Shengyu Fan, Zhenhua Yin, Xinkai Song, Xing Hu, Zidong Du, Qi Guo, Weizhi Xu, Rui Hou, Dan Meng, <strong>Song Bian</strong>, Mingzhe Zhang        </span>
+        <span class="pub-meta"><strong> IEEE Transactions on Computers</strong>, November 2025 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title"> Engorgio: An Arbitrary-Precision Unbounded-Size Hybrid Encrypted Database via Quantized Fully Homomorphic Encryption</span>
+        <div class="pub-links">      <a href="https://eprint.iacr.org/2025/198" class="pub-link">PDF </a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Haowen Pan, Jiaqi Hu, Zhou Zhang, Yunhao Fu, Jiafeng Hua, Yi Chen, Bo Zhang, Yier Jin, Jin Dong, and Zhenyu Guan        </span>
+        <span class="pub-meta"><strong>USENIX Security Symposium</strong>, August 2025 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Presto: A Unified RISC-V-Compatible SoC for Multi-Scheme FHE Acceleration over Module Lattice</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors">Luchang Lei, Yu Duan, Cheng Peng, Yongqing Zhu, Gangfeng Du, Zhenyu Guan, Huazhong Yang, Yongpan Liu, Zhen Gu, <strong>Song Bian</strong>, Hongyang Jia        </span>
+        <span class="pub-meta"><strong>IEEE Hot Chips 37 Symposium (HCS)</strong>, August 2025 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Enabling Energy-Efficient Homomorphic Encryption Evaluation via eDRAM-Based In-Situ Computing in an Edge Processor</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors">Luchang Lei, Yongqing Zhu, Xinhang Zou, Zhou Zhang, Zian Zhao, Yifan He, Gangfeng Du, Zhenyu Guan, Huazhong Yang, Yongpan Liu, <strong>Song Bian</strong>, Hongyang Jia        </span>
+        <span class="pub-meta"><strong> IEEE Journal of Solid-State Circuits (JSSC)</strong>, July 2025 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">CHLOE: Loop Transformation over Fully Homomorphic Encryption via Multi-Level Vectorization and Control-Path Reduction</span>
+        <div class="pub-links">      <a href="https://eprint.iacr.org/2024/1991" class="pub-link">PDF </a> 
+      <a href="https://github.com/heir-compiler/CHLOE" class="pub-link">Code</a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Zian Zhao, Ruiyu Shen, Zhou Zhang, Ran Mao, Dawei Li, Yizhong Liu, Masaki Waga, Kohei Suenaga, Zhenyu Guan, Jiafeng Hua, Yier Jin, and Jianwei Liu        </span>
+        <span class="pub-meta"><strong>IEEE Symposium on Security and Privacy (S&P)</strong>, May 2025 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">FHECAP: An Encrypted Control System With Piecewise Continuous Actuation</span>
+        <div class="pub-links">      <a href="https://eprint.iacr.org/2025/625" class="pub-link">PDF </a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Yunhao Fu, Dong Zhao, Haowen Pan, Yuexiang Jin, Jiayue Sun, Hui Qiao, Zhenyu Guan        </span>
+        <span class="pub-meta"><strong>IEEE Transactions on Information Forensics and Security (TIFS)</strong>, April 2025 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">ArcEDB: An Arbitrary-Precision Encrypted Database via (Amortized) Modular Homomorphic Encryption</span>
+        <div class="pub-links">      <a href="https://eprint.iacr.org/2024/1064" class="pub-link">PDF </a> 
+      <a href="https://github.com/zhouzhangwalker/ArcEDB" class="pub-link">Code</a> 
+        </div>
+    </div>
+        <span class="pub-authors">Zhou Zhang, <strong>Song Bian</strong>, Zian Zhao, Ran Mao, Haoyi Zhou, Jiafeng Hua, Yier Jin, and Zhenyu Guan        </span>
+        <span class="pub-meta"><strong>ACM Conference on Computer and Communications Security (CCS)</strong>, October 2024 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">An eDRAM-Based In-Situ-Computing Processor for Homomorphic Encryption Evaluation on the Edge</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors">Luchang Lei, Yongqing Zhu, Xinhang Zou, Yifan He, Zhou Zhang, Zhenyu Guan, Huazhong Yang, Yongpan Liu, <strong>Song Bian</strong>, and Hongyang Jia        </span>
+        <span class="pub-meta"><strong>European Solid-State Electronics Research Conference (ESSERC)</strong>, September 2024 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">PPGNN: Fast and Accurate Privacy-Preserving Graph Neural Network Inference via Parallel and Pipelined Arithmetic-and-Logic FHE Accelerator</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors">Yuntao Wei, Xueyan Wang, <strong>Song Bian</strong>, Yicheng Huang, Weisheng Zhao, and Yier Jin        </span>
+        <span class="pub-meta"><strong>ACM/IEEE Design Automation Conference (DAC)</strong>, July 2024 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Alchemist: A Unified Accelerator Architecture for Cross-Scheme Fully Homomorphic Encryption</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors">Jianan Mu, Husheng Han, Shangyi Shi, Jing Ye, Zizhen Liu, Shengwen Liang, Meng Li, Mingzhe Zhang, <strong>Song Bian</strong>, Xing Hu, Huawei Li, Xiaowei Li        </span>
+        <span class="pub-meta"><strong>ACM/IEEE Design Automation Conference (DAC)</strong>, July 2024 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">ESC-NTT: An Elastic, Seamless and Compact Architecture for Multi-Parameter NTT Acceleration</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors">Zhenyu Guan, Yongqing Zhu, Yicheng Huang, Luchang Lei, Xueyan Wang, Hongyang Jia, Yi Chen, Bo Zhang, Jin Dong, <strong>Song Bian</strong>        </span>
+        <span class="pub-meta"><strong>Proc. of Design, Automation & Test in Europe (DATE)</strong>, March 2024 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">HEIR: A Unified Representation for Cross-Scheme Compilation of Fully Homomorphic Computation</span>
+        <div class="pub-links">      <a href="https://eprint.iacr.org/2023/1445" class="pub-link">PDF </a> 
+      <a href="https://github.com/heir-compiler/HEIR" class="pub-link">Code</a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Zian Zhao, Zhou Zhang, Ran Mao, Kohei Suenaga, Yier Jin, Zhenyu Guan, and Jianwei Liu        </span>
+        <span class="pub-meta"><strong>Network and Distributed System Security Symposium (NDSS)</strong>, February 2024 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">AutoHoG: Automating Homomorphic Gate Design for Large-Scale Logic Circuit Evaluation</span>
+        <div class="pub-links">      <a href="https://eprint.iacr.org/2024/1250" class="pub-link">PDF </a> 
+      <a href="https://github.com/Lavendes/AutoHog" class="pub-link">Code</a> 
+        </div>
+    </div>
+        <span class="pub-authors">Zhenyu Guan, Ran Mao, Qianyun Zhang, Zhou Zhang, Zian Zhao, and <strong>Song Bian</strong>        </span>
+        <span class="pub-meta"><strong>IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems</strong>, January 2024 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">HE<sup>3</sup>DB: An Efficient and Elastic Encrypted Database Via Arithmetic-And-Logic Fully Homomorphic Encryption</span>
+        <div class="pub-links">      <a href="https://eprint.iacr.org/2023/1446" class="pub-link">PDF </a> 
+      <a href="https://github.com/zhouzhangwalker/HE3DB/" class="pub-link">Code</a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Zhou Zhang, Haowen Pan, Ran Mao, Zian Zhao, Yier Jin, and Zhenyu Guan        </span>
+        <span class="pub-meta"><strong>ACM Conference on Computer and Communications Security (CCS)</strong>, November 2023 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">THE-V: Verifiable Privacy-Preserving Neural Network via Trusted Homomorphic Execution</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors">Yuntao Wei, Xueyan Wang, <strong>Song Bian</strong>, Weisheng Zhao, and Yier Jin        </span>
+        <span class="pub-meta"><strong>IEEE/ACM International Conference on Computer-Aided Design (ICCAD)</strong>, October 2023 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">HEDA: Multi-Attribute Unbounded Aggregation over Homomorphically Encrypted Database</span>
+        <div class="pub-links">      <a href="https://vldb.org/pvldb/volumes/16/paper/HEDA%3A%20Multi-Attribute%20Unbounded%20Aggregation%20over%20Homomorphically%20Encrypted%20Database" class="pub-link">PDF </a> 
+      <a href="https://github.com/alibaba-edu/mpc4j/tree/main/mpc4j-native-fhe/tfhe" class="pub-link">Code</a> 
+        </div>
+    </div>
+        <span class="pub-authors">Xuanle Ren, Le Su, Zhen Gu, Sheng Wang, Feifei Li, Yuan Xie, <strong>Song Bian</strong>, Chao Li, and Fan Zhang        </span>
+        <span class="pub-meta"><strong>International Conference on Very Large Data Bases (VLDB)</strong>, September 2023 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">PIMA-LPN: Processing-in-memory Acceleration for Efficient LPN-based Post-Quantum Cryptography</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors">Lin Ding, <strong>Song Bian</strong>, and Jiliang Zhang        </span>
+        <span class="pub-meta"><strong>ACM/IEEE Design Automation Conference (DAC)</strong>, July 2023 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Oblivious Online Monitoring for Safety LTL Specification via Fully Homomorphic Encryption</span>
+        <div class="pub-links">      <a href="https://arxiv.org/abs/2206.03582" class="pub-link">PDF </a> 
+      <a href="https://doi.org/10.5281/zenodo.6558657" class="pub-link">Code</a> 
+        </div>
+    </div>
+        <span class="pub-authors">Ryotaro Banno, Kotaro Matsuoka, Naoki Matsumoto, <strong>Song Bian</strong>, Masaki Waga, and Kohei Suenaga        </span>
+        <span class="pub-meta"><strong>Computer Aided Verification (CAV)</strong>, August 2022 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">VisualNet: An End-to-End Human Visual System Inspired Framework to Reduce Inference Latency of Deep Neural Networks</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors">Tianchen Wang, Jiawei Zhang, Jinjun Xiong, <strong>Song Bian</strong>, Zheyu Yan, Meiping Huang, Jian Zhuang, Takashi Sato, Yiyu Shi, and Xiaowei Xu        </span>
+        <span class="pub-meta"><strong>IEEE Transactions on Computers</strong>, July 2022 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Efficient Analysis for Mitigation of Workload-dependent Aging Degradation</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors">Shumpei Morita, <strong>Song Bian</strong>, Michihiro Shintani, and Takashi Sato        </span>
+        <span class="pub-meta"><strong>IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems</strong>, February 2022 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">AxRLWE: A Multi-level Approximate Ring-LWE Co-processor for Lightweight IoT Applications</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors">Dur E Shahwar Kundi, Ayesha Khalid, <strong>Song Bian</strong>, Chenghua Wang, Maire O'Neill, and Weiqiang Liu        </span>
+        <span class="pub-meta"><strong>IEEE Internet of Things Journal</strong>, October 2021 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">APAS: Application-specific accelerators for RLWE-based homomorphic linear transformations</span>
+        <div class="pub-links">      <a href="https://eprint.iacr.org/2021/1284" class="pub-link">PDF </a> 
+      <a href="https://github.com/sbian3/homomorphicmatrix" class="pub-link">Code</a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Dur E Shahwar Kundi, Kazuma Hirozawa, Weiqiang Liu, and Takashi Sato        </span>
+        <span class="pub-meta"><strong>IEEE Transactions on Information Forensics and Security</strong>, September 2021 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Virtual Secure Platform: A Five-Stage Pipeline Processor over TFHE</span>
+        <div class="pub-links">      <a href="https://arxiv.org/abs/2010.09410" class="pub-link">PDF </a> 
+      <a href="https://github.com/virtualsecureplatform/kvsp" class="pub-link">Code</a> 
+        </div>
+    </div>
+        <span class="pub-authors">Kotaro Matsuoka, Ryotaro Banno, Naoki Matsumoto, Takashi Sato, and <strong>Song Bian</strong>        </span>
+        <span class="pub-meta"><strong>USENIX Security Symposium</strong>, August 2021 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Privacy-Preserving Medical Image Segmentation via Hybrid Trusted Execution Environment</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Weiwen Jiang, and Takashi Sato        </span>
+        <span class="pub-meta"><strong>ACM/IEEE Design Automation Conference (DAC)</strong>, July 2021 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Clonable PUF: on the Design of PUFs That Share Equivalent Responses</span>
+        <div class="pub-links">      <a href="https://eprint.iacr.org/2021/341" class="pub-link">PDF </a> 
+        </div>
+    </div>
+        <span class="pub-authors">Takashi Sato, Yuki Tanaka, <strong>Song Bian</strong>        </span>
+        <span class="pub-meta"><strong>Proc. of IEEE International Symposium on Circuits and Systems (ISCAS)</strong>, May 2021 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Automatic Parallelism Tuning for Module Learning with Errors Based Post-Quantum Key Exchanges on GPUs</span>
+        <div class="pub-links">      <a href="https://eprint.iacr.org/2021/198" class="pub-link">PDF </a> 
+      <a href="https://github.com/tono-satolab/atpqc-cuda" class="pub-link">Code</a> 
+        </div>
+    </div>
+        <span class="pub-authors">Tatsuki Ono, <strong>Song Bian</strong>, Takashi Sato        </span>
+        <span class="pub-meta"><strong>Proc. of IEEE International Symposium on Circuits and Systems (ISCAS)</strong>, May 2021 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">AutoPrivacy: Automated Layer-wise Parameter Selection for Secure Neural Network Inference</span>
+        <div class="pub-links">      <a href="https://arxiv.org/abs/2006.04219" class="pub-link">PDF </a> 
+        </div>
+    </div>
+        <span class="pub-authors">Qian Lou, <strong>Song Bian</strong>, and Lei Jiang        </span>
+        <span class="pub-meta"><strong>Conference on Neural Information Processing (NeurIPS)</strong>, December 2020 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">BUNET: Blind Medical Image Segmentation Based on Secure UNET</span>
+        <div class="pub-links">      <a href="https://arxiv.org/pdf/2007.06855" class="pub-link">PDF </a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Xiaowei Xu, Weiwen Jiang, Yiyu Shi, and Takashi Sato        </span>
+        <span class="pub-meta"><strong>International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI)</strong>, October 2020 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">NASS: Optimizing Secure Inference via Neural Architecture Search</span>
+        <div class="pub-links">      <a href="https://arxiv.org/pdf/2001.11854" class="pub-link">PDF </a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Weiwen Jiang, Qing Lu, Yiyu Shi, and Takashi Sato        </span>
+        <span class="pub-meta"><strong>European Conference on Artificial Intelligence (ECAI)</strong>, June 2020 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">ENSEI: Efficient Secure Inference via Frequency-Domain Homomorphic Convolution for Privacy-Preserving Visual Recognition</span>
+        <div class="pub-links">      <a href="https://arxiv.org/pdf/2003.05328" class="pub-link">PDF </a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Tianchen Wang, Masayuki Hiromoto, Yiyu Shi, and Takashi Sato        </span>
+        <span class="pub-meta"><strong>Proc. IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</strong>, June 2020 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">AxMM: Area and Power Efficient Approximate Modulo Multiplier for R-LWE Cryptosystem</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors">Dur E Shahwar Kundi, <strong>Song Bian</strong>, Ayesha Khalid, Chenghua Wang, Maire O'Neill, and Weiqiang Liu        </span>
+        <span class="pub-meta"><strong>Proc. of IEEE International Symposium on Circuits and Systems (ISCAS)</strong>, May 2020 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Filianore: Better Multiplier Architectures for LWE-based Post-Quantum Key Exchange</span>
+        <div class="pub-links">      <a href="./file/Bian2019filianore.pdf" class="pub-link">PDF </a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Masayuki Hiromoto, Takashi Sato        </span>
+        <span class="pub-meta"><strong>Proc. of ACM/IEEE Design Automation Conference (DAC)</strong>, June 2019 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">DArL: Dynamic Parameter Adjustment for LWE-based Secure Inference</span>
+        <div class="pub-links">      <a href="./file/Bian2019darl.pdf" class="pub-link">PDF </a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Masayuki Hiromoto, Takashi Sato        </span>
+        <span class="pub-meta"><strong>Proc. of Design, Automation & Test in Europe (DATE)</strong>, March 2019 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Towards Practical Homomorphic Email Filtering: A Hardware-Accelerated Secure Naive Bayesian Filter</span>
+        <div class="pub-links">      <a href="./file/Bian2019snbf.pdf" class="pub-link">PDF </a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Masayuki Hiromoto, Takashi Sato        </span>
+        <span class="pub-meta"><strong>Proc. of Asia and South Pacific Design Automation Conference (ASP-DAC)</strong>, January 2019 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">DWE: Decrypting Learning with Errors with Errors</span>
+        <div class="pub-links">      <a href="./file/Bian2018dwe.pdf" class="pub-link">PDF </a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Masayuki Hiromoto, Takashi Sato        </span>
+        <span class="pub-meta"><strong>Proc. of ACM/IEEE Design Automation Conference (DAC)</strong>, June 2018 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Coin Flipping PUF: A Novel PUF with Improved Resistance against Machine Learning Attacks</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors">Yuki Tanaka, <strong>Song Bian</strong>, Masayuki Hiromoto, Takashi Sato        </span>
+        <span class="pub-meta"><strong>IEEE Transactions Circuits and Systems II: Express Briefs</strong>, May 2018 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">LSTA: Learning-Based Static Timing Analysis for High-Dimensional Correlated On-Chip Variations</span>
+        <div class="pub-links">      <a href="./file/Bian2017lsta.pdf" class="pub-link">PDF </a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Michihiro Shintani, Masayuki Hiromoto, Takashi Sato        </span>
+        <span class="pub-meta"><strong>Proc. of ACM/IEEE Design Automation Conference (DAC)</strong>, June 2017 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">SCAM: Secured Content Addressable Memory Based on Homomorphic Encryption</span>
+        <div class="pub-links">      <a href="./file/Bian2017scam.pdf" class="pub-link">PDF </a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Masayuki Hiromoto, Takashi Sato        </span>
+        <span class="pub-meta"><strong>Proc. of Design, Automation & Test in Europe (DATE)</strong>, March 2017 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Runtime NBTI Mitigation for Processor Lifespan Extension via Selective Node Control</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Michihiro Shintani, Zheng Wang, Masayuki Hiromoto, Anupam Chattopadhyay, Takashi Sato        </span>
+        <span class="pub-meta"><strong>Proc. of IEEE Asian Test Symposium (ATS)</strong>, November 2016 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Workload-Aware Worst Path Analysis of Processor-Scale NBTI Degradation</span>
+        <div class="pub-links">      <a href="./file/Bian2016workload-aware.pdf" class="pub-link">PDF </a> 
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Michihiro Shintani, Shumpei Morita, Hiromitsu Awano, Masayuki Hiromoto, Takashi Sato        </span>
+        <span class="pub-meta"><strong>Proc. of Great Lakes Symposium on VLSI (GLSVLSI)</strong>, May 2016 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Nonlinear Delay-Table Approach for Full-Chip NBTI Degradation Prediction</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Michihiro Shintani, Shumpei Morita, Masayuki Hiromoto, Takashi Sato        </span>
+        <span class="pub-meta"><strong>Proc. of International Symposium on Quality Electronic Design (ISQED)</strong>, March 2016 </span>
+  </div>
+        <div class="pub-item">
+        <div class="pub-header">
+            <span class="pub-title">Mitigation of NBTI-induced Timing Degradation in Processor</span>
+        <div class="pub-links">      
+        </div>
+    </div>
+        <span class="pub-authors"><strong>Song Bian</strong>, Michihiro Shintani, Zheng Wang, Masayuki Hiromoto, Anupam Chattopadhyay, Takashi Sato        </span>
+        <span class="pub-meta"><strong>Proc. of ACM International Workshop on Timing Issues in the Specification and Synthesis of Digital Systems (TAU)</strong>, March 2016 </span>
+  </div>
 
-
-
+        </div>
+</div>
           <!-- Start Image -->
-          <TD vAlign=top width="20%" height=79>
+	  <div class="sidebar">
+            <img src="./fig/hello.png" alt="Song Bian" class="profile-img">
+            
+            <div class="contact-info">
+                <span class="contact-header">Contact</span>
+                Song Bian<br>
+                Bldg. Diyiguan, Room 509 South<br>
+                Beihang University, 37 Xueyuan Rd.<br>
+                Haidian, Beijing 100191, CHINA<br>
+                Email: sbian at buaa.edu.cn
 
-            <P align=center><img border="0" title="" alt="Something" src="./img/hello.png" height="230"></br>
+        </div>
 
-            <P style="MARGIN-LEFT: 40px"><SPAN style="FONT-WEIGHT: 400"><FONT
-                                               style="FONT-WEIGHT: 400; FONT-SIZE: 10pt" >
-                                               <b>Contact:</b></FONT></SPAN></P>
-            <P style="MARGIN-LEFT: 40px"><SPAN style="FONT-WEIGHT: 400"><FONT
-                                               style="FONT-WEIGHT: 400; FONT-SIZE: 10pt" >
-                                               Song Bian<BR>
-                                               Bldg. Diyiguan, Room 509 South<BR>
-                                               Beihang University, 37 Xueyuan Rd., Haidian<BR>
-                                               Beijing 100191<BR>
-                                               CHINA<BR>
-                                               Email: sbian at buaa.edu.cn
-            </FONT></SPAN></P>
-            </P></TD></TR>
-    </TBODY></TABLE>
+    </div>
 
-
+</div>
+</div>
 </BODY>
 </HTML>
 
